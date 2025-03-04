@@ -1,8 +1,4 @@
-import useAuth from "../hooks/useAuth";
-
 function PrivateContent() {
-  const { logout } = useAuth();
-
   return (
     <>
       <header>
@@ -10,10 +6,8 @@ function PrivateContent() {
       </header>
       <aside>
         <p>Test</p>
-        <button onClick={logout}>Atsijungti</button>
       </aside>
       <section>sekcija</section>
-      <footer>Footer</footer>
     </>
   );
 }

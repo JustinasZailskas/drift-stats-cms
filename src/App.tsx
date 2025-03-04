@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router";
 import "./App.css";
 import LoginForm from "./pages/LoginForm";
 import HomePage from "./pages/HomePage";
-import PrivateRoute from "./routes/PrivateRoute";
+import PrivateLayout from "./routes/PrivateLayout";
 import PrivateContent from "./routes/PrivateContent";
 import { AuthProvider } from "./services/AuthContext";
 
@@ -15,9 +15,9 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <PrivateRoute>
+            <PrivateLayout>
               <PrivateContent />
-            </PrivateRoute>
+            </PrivateLayout>
           }
         />
       </Routes>

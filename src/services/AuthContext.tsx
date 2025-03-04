@@ -9,6 +9,7 @@ interface UserInterface {
 type AuthType = {
   user: UserInterface;
   isAuthenticated: boolean;
+  error: string | null;
   login: (email: string, password: string) => void;
   logout: () => void;
 };
@@ -21,6 +22,7 @@ const initialUser: UserInterface = {
 const AuthContext = createContext<AuthType>({
   user: initialUser,
   isAuthenticated: false,
+  error: null,
   login: () => {},
   logout: () => {},
 });
@@ -28,6 +30,7 @@ const AuthContext = createContext<AuthType>({
 const AuthProvider = ({ children }: ChildrenProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<UserInterface>(initialUser);
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,13 +47,15 @@ const AuthProvider = ({ children }: ChildrenProps) => {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message);
+      if (!res.ok) throw new Error(data.message || "Nepavyko prisijungti");
       setIsAuthenticated(true);
+      setError(null);
       localStorage.setItem("token", data.token); // Saugo tokeną
       navigate("/dashboard", { replace: true });
       return data;
-    } catch (error) {
-      console.error("Login error:", error);
+    } catch (error: any) {
+      console.log("Login error:", error.message);
+      setError(error.message);
     }
   };
 
@@ -61,7 +66,9 @@ const AuthProvider = ({ children }: ChildrenProps) => {
     navigate({ pathname: "" }, { replace: true });
   };
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, error, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

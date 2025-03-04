@@ -1,0 +1,22 @@
+.navbar {
+  max-width: 1280px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
+  list-style: none;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+}

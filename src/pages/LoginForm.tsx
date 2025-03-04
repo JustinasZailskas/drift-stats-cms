@@ -5,16 +5,10 @@ import { AuthContext } from "../services/AuthContext";
 function LoginForm() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const { login } = useContext(AuthContext);
+  const { error, login } = useContext(AuthContext);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Handle submit");
-
-    try {
-      login(username, password);
-    } catch (error) {
-      console.log("Klaida, ", error);
-    }
+    login(username, password);
   };
 
   return (
@@ -39,6 +33,7 @@ function LoginForm() {
             className={styles.input}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p className={styles.error}>{error}</p>}
           <button className={styles.button}>Prisijungti</button>
         </form>
       </div>

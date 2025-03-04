@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router";
 import "./App.css";
 import LoginForm from "./pages/LoginForm";
 import HomePage from "./pages/HomePage";
-import PrivateRoute from "./pages/PrivateRoute";
-import PrivateContent from "./pages/PrivateContent";
+import PrivateRoute from "./routes/PrivateRoute";
+import PrivateContent from "./routes/PrivateContent";
 import { AuthProvider } from "./services/AuthContext";
 
 function App() {

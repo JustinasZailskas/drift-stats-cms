@@ -1,16 +1,16 @@
 import { Navigate } from "react-router";
 import useAuth from "../hooks/useAuth";
-import ChildrenProps from "../interface/ChildrenProps";
 import NavigationComponent from "../components/NavigationComponent";
 import Footer from "../components/Footer";
+import Dashboard from "../pages/Dashboard";
 
-const PrivateLayout = ({ children }: ChildrenProps) => {
+const PrivateLayout = () => {
   const { isAuthenticated } = useAuth();
 
   return (
     <>
       <NavigationComponent />
-      {isAuthenticated ? children : <Navigate to="/" />}
+      {isAuthenticated ? <Dashboard /> : <Navigate to="/" />}
       <Footer />
     </>
   );

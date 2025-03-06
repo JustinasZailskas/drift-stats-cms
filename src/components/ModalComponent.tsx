@@ -4,7 +4,6 @@ type ModalProps = {
   isOpen: boolean;
   children?: React.ReactNode;
   onClose: () => void;
-  //   duom: { id: number; name: string }[];
 };
 
 function ModalComponent({ isOpen, children, onClose }: ModalProps) {

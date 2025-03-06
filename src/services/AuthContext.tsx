@@ -33,12 +33,9 @@ const AuthProvider = ({ children }: ChildrenProps) => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("Auth state", { user, isAuthenticated });
-  }, [user, isAuthenticated]);
+  useEffect(() => {}, [user, isAuthenticated]);
 
   const login = async (username: string, password: string) => {
-    console.log("Login funkcija");
     try {
       const res = await fetch("http://localhost:7438/login", {
         method: "POST",
@@ -54,7 +51,6 @@ const AuthProvider = ({ children }: ChildrenProps) => {
       navigate("/dashboard", { replace: true });
       return data;
     } catch (error: any) {
-      console.log("Login error:", error.message);
       setError(error.message);
     }
   };

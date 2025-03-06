@@ -20,8 +20,21 @@
   flex-direction: column;
 }
 
-.sidebar li {
-  margin-bottom: 10px;
+.sidebar a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .content {
